@@ -1,7 +1,7 @@
 <!-- <app-list-cart></app-list-cart> -->
 <div class="vh-100 vw-100 d-flex align-items-lg-center align-items-end justify-content-center">
 
-    <div class="flex-column-reverse d-flex flex-lg-row bg-transparent w-75 justify-content-between h-50 align-items-lg-center">
+    <div class="flex-column-reverse d-flex flex-lg-row bg-transparent w-100 px-2 justify-content-between h-50 align-items-lg-center">
         <div style="flex: 1 1 auto; " class="flex-column d-flex h-100 shadow container-1">
             <div class="father rounded-top bg-secondary w-100 d-flex justify-content-around align-items-center">
                 <button style="background: #10101a;"></button>
@@ -14,27 +14,17 @@
             </div>
             <div style="height: 85%; background-color: #101721;" class="container-1 rounded-bottom ">
                 <div class="w-100 d-flex px-5 flex-column gap-3">
-                    <div class="card-body  d-flex  border-bottom justify-content-between align-items-center">
-                        <h5 class="card-title text-white">video 1</h5>
+                    <div (click)="open(modalList, item)" *ngFor="let item of dataVideo" class="card-body  d-flex  border-bottom justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn">
+                                <i *ngIf="!(idVideo == item.id)" class="bi bi-play-fill text-white fs-5"></i>
+                                <i *ngIf="idVideo == item.id" class="bi bi-pause-fill text-white fs-5"></i>
+
+                            </button>
+                            <h5 class="card-title text-white">{{item.name_category}}</h5>
+                        </div>
+
                         <button type="button" class="btn">
-                            <i class="bi text-white bi-plus-circle fs-2"></i>
-                        </button>
-                    </div>
-                    <div class="card-body d-flex border-bottom justify-content-between align-items-center">
-                        <h5 class="card-title text-white">video 1</h5>
-                        <button type="button" class="btn">
-                            <i class="bi text-white bi-plus-circle fs-2"></i>
-                        </button>
-                    </div>
-                    <div class="card-body d-flex border-bottom justify-content-between align-items-center">
-                        <h5 class="card-title text-white">video 1</h5>
-                        <button type="button" class="btn">
-                            <i class="bi text-white bi-plus-circle fs-2"></i>
-                        </button>
-                    </div>
-                    <div class="card-body d-flex border-bottom justify-content-between align-items-center">
-                        <h5 class="card-title text-white">video 1</h5>
-                        <button type="button" placement="end" ngbTooltip="añadir" class="btn">
                             <i class="bi text-white bi-plus-circle fs-2"></i>
                         </button>
                     </div>
@@ -44,39 +34,19 @@
 
         <div class="p-2 flex-column d-flex h-100 shadow" style="flex: 1 1 50%;">
             <div style="height: 15%;" class="rounded-top">
-                <ul class="d-none d-lg-flex p-0 align-items-center text-black text-uppercase fw-bold justify-content-around cursor w-100 h-100">
-                    <li>servidor1</li>
-                    <li>servidor2</li>
-                    <li>servidor3</li>
-                    <li>servidor4</li>
-                    <li>servidor5</li>
+                <ul class="d-flex p-0 align-items-center text-black text-uppercase fw-bold justify-content-around cursor w-100 h-100">
+                    <li>{{titleVideo}}</li>
                 </ul>
-                <div class="flex d-lg-none" ngbDropdown #myDrop="ngbDropdown">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary me-2"
-                        id="dropdownManual"
-                        ngbDropdownAnchor
-                        (focus)="myDrop.open()"
-                    >
-                        Servidores
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownManual">
-                        <button ngbDropdownItem>opction - 1</button>
-                        <button ngbDropdownItem>opction - 1</button>
-                        <button ngbDropdownItem>opction - 1</button>
-                        <button ngbDropdownItem>opction - 1</button>
-                        <button ngbDropdownItem>opction - 1</button>
-                        <button ngbDropdownItem>opction - 1</button>
-                    </div>
-                </div>
             </div>
             <div style="height: 85%;" class="video rounded-bottom">
-                <!-- <img width="100%" height="100%" src="https://concepto.de/wp-content/uploads/2020/12/imagen-e1607991781485.jpg" alt=""> -->
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZQiOi7MxsO0" title="Stormy Daniels no mide sus palabras al contar su supuesta relación con Trump | Noticias Telemundo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe *ngIf="urlVideo" width="100%" height="100%" [src]="urlVideo" [title]="titleVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen safe></iframe>
             </div>
         </div>
 
     </div>
 
 </div>
+
+<ng-template #modalList let-modal>
+    <app-modal-list-video [modal]="modalOpen" [dataVideo]="itemData"></app-modal-list-video> 
+</ng-template>

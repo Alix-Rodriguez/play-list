@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{dataVideo.name_category}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <ul class="list-group">
+        <li (click)="modal.close(video)" class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let video of dataVideo.videos">
+           <div>
+            {{ video.name }}
+            <p class="text-muted">{{ video.description }}</p>
+          </div>
+          <i *ngIf="!(titleVideo == video.name)" class="bi bi-play-fill text-black fs-2"></i>
+          <i *ngIf="titleVideo == video.name" class="bi bi-pause text-black fs-2"></i>
+        </li>
+      </ul>
+</div>

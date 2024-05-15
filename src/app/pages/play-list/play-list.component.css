@@ -1,6 +1,4 @@
-ul li {
-  cursor: pointer;
-}
+
 
 .father button {
   height: 2rem;
@@ -36,16 +34,19 @@ ul li {
   color: #8da3af !important;
 }
 
-ul li {
+/* ul li {
+  cursor: pointer;
+} */
+
+/* ul li {
   transition: border-bottom 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
-
 }
 
 ul li:hover {
   transform: translateY(-5px);
   border-bottom: 2px solid #000;
-}
+} */
 
 @media (max-width: 950px) {
   .video {
