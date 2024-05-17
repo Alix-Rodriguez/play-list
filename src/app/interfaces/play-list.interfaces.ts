@@ -5,6 +5,7 @@ export interface Course {
 }
 
 export interface Video {
+    video_id?:          number;  
     name?:        string;
     url?:         string;
     description?: string;

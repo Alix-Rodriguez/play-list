@@ -9,8 +9,7 @@
             {{ video.name }}
             <p class="text-muted">{{ video.description }}</p>
           </div>
-          <i *ngIf="!(titleVideo == video.name)" class="bi bi-play-fill text-black fs-2"></i>
-          <i *ngIf="titleVideo == video.name" class="bi bi-pause text-black fs-2"></i>
+          <i *ngIf="idItem == video.video_id" class="bi bi-check2-circle text-black fs-2"></i>
         </li>
       </ul>
 </div>

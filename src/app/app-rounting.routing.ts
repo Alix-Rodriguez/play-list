@@ -8,10 +8,10 @@ import { PlayListComponent } from './pages/play-list/play-list.component';
 const routes: Routes = [
  
   {
-    path: '', component: HomeComponent,
+    path: '', component: PlayListComponent,
   },
   {
-    path: 'play-list', component: PlayListComponent,
+    path: 'play-list', component: HomeComponent,
   }
   
 

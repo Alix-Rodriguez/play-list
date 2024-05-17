@@ -1,4 +1,4 @@
-import { Component, OnInit, SecurityContext, TemplateRef, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, SecurityContext, TemplateRef, ViewChild, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Course } from 'src/app/interfaces/play-list.interfaces';
 import { video } from 'src/app/utils/videos';
@@ -15,15 +15,28 @@ export class PlayListComponent implements OnInit {
   public dataVideo: Course[] = video;
   public itemData: Course = {};
   modalOpen: any;
-  idVideo?: number = 1;
+  idVideo?: any = 1;
+  play: any = 1;
   urlVideo?: SafeResourceUrl;
-  titleVideo?: string = "Introduction to Python";
+  titleVideo?: string = "";
 
-  constructor(private sanitizer: DomSanitizer){}
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/Z1Yd7upQsXY")
-    localStorage.setItem("titleVideo", "Introduction to Python")
+    this.setVideo(1, 1);
+  }
+
+  setVideo(id_item?: number, id_itemVideo?: number): void {
+    const videoData = this.dataVideo.find(video => video.id === id_item);
+    if (videoData) {
+      videoData?.videos?.forEach((video, index) => {
+        if (id_itemVideo == video.video_id) {
+          this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${video.url}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`);
+          this.titleVideo = video.name;
+        }
+      });
+
+    }
   }
 
   open(content: TemplateRef<any>, data: Course) {
@@ -36,15 +49,15 @@ export class PlayListComponent implements OnInit {
 
     this.modalOpen.result.then(
       (result: any) => {
-        this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl(result.url);
-        this.titleVideo = result.name;
-        localStorage.setItem("titleVideo", result.name)
+        this.play = result.video_id;
         this.idVideo = data.id;
+        this.setVideo(this.idVideo, result.video_id)
+        this.idVideo = 0;
+        this.idVideo = this.idVideo > 0 ? 0 : data.id;
       },
       (reason: any) => {
       },
     );
   }
-
 
 }

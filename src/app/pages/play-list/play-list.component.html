@@ -17,8 +17,7 @@
                     <div (click)="open(modalList, item)" *ngFor="let item of dataVideo" class="card-body  d-flex  border-bottom justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                             <button type="button" class="btn">
-                                <i *ngIf="!(idVideo == item.id)" class="bi bi-play-fill text-white fs-5"></i>
-                                <i *ngIf="idVideo == item.id" class="bi bi-pause-fill text-white fs-5"></i>
+                                <i *ngIf="idVideo == item.id" class="bi bi-check2-circle text-white fs-5"></i>
 
                             </button>
                             <h5 class="card-title text-white">{{item.name_category}}</h5>
@@ -35,11 +34,11 @@
         <div class="p-2 flex-column d-flex h-100 shadow" style="flex: 1 1 50%;">
             <div style="height: 10%;" class="rounded-top">
                 <ul class="d-flex p-0 align-items-center text-black text-uppercase fw-bold justify-content-around cursor w-100 h-100">
-                    <li>{{titleVideo}}</li>
+                    <li class="fs-3">{{titleVideo}}</li>
                 </ul>
             </div>
             <div style="height: 90%;" class="video border-3 border border-dark rounded">
-                <iframe *ngIf="urlVideo" width="100%" height="100%" [src]="urlVideo" [title]="titleVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen safe></iframe>
+                <iframe  width="100%" height="100%" [src]="urlVideo" [title]="titleVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen safe></iframe> 
             </div>
         </div>
 
@@ -48,5 +47,5 @@
 </div>
 
 <ng-template #modalList let-modal>
-    <app-modal-list-video [modal]="modalOpen" [dataVideo]="itemData"></app-modal-list-video> 
+    <app-modal-list-video [modal]="modalOpen" [idItem]="play" [dataVideo]="itemData"></app-modal-list-video> 
 </ng-template>

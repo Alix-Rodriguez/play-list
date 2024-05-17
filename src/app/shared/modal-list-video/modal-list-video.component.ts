@@ -7,9 +7,10 @@ import { Course } from 'src/app/interfaces/play-list.interfaces';
   styleUrls: ['./modal-list-video.component.css']
 })
 export class ModalListVideoComponent implements OnInit{
-  titleVideo: any = localStorage.getItem("titleVideo")
   @Input() modal:any;
   @Input() dataVideo:Course={};
+  @Input() idItem: number = 0;
+
 
   ngOnInit(): void {
   }
